@@ -41,4 +41,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function profileImage()
+{
+    return $this->profile_image ? asset('storage/' . $this->profile_image) : asset('images/default-avatar.png');
+}
+
 }
