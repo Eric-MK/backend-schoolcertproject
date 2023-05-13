@@ -16,7 +16,7 @@ return new class extends Migration
         $table->string('home_team');
         $table->string('away_team');
         $table->dateTime('match_time');
-        $table->timestamps();
+        $table->integer('ticket_price');
     });
 }
 
