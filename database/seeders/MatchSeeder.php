@@ -15,8 +15,7 @@ class MatchSeeder extends Seeder
                 'home_team' => 'Tottenham Hotspurs',
                 'away_team' => 'Arsenal',
                 'match_time' => '2023-05-28 20:00:00',
-                'created_at' => now(),
-                'updated_at' => now(),
+                'ticket_price'=>50,
             ],
         ]);
     }
