@@ -42,7 +42,7 @@ class AuthController extends Controller
         ], 201);
     }
 
-    public function login(Request $request)
+    /*  public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'email' => 'required|string|email',
@@ -72,6 +72,34 @@ class AuthController extends Controller
             'access_token' => $accessToken,
             'token_type' => 'Bearer',
             'user' => $user
+        ], 200);
+    } */
+    public function login(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|string|email',
+            'password' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+
+        $credentials = $request->only(['email', 'password']);
+
+        if (!Auth::attempt($credentials)) {
+            return response()->json([
+                'message' => 'Unauthorized'
+            ], 401);
+        }
+
+        $user = $request->user();
+        $tokenResult = $user->createToken('Personal Access Token');
+        $accessToken = $tokenResult->accessToken;
+
+        return response()->json([
+            'access_token' => $accessToken,
+            'token_type' => 'Bearer'
         ], 200);
     }
 
