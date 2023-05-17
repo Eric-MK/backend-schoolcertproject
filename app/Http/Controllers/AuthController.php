@@ -41,39 +41,6 @@ class AuthController extends Controller
             'message' => 'Successfully registered'
         ], 201);
     }
-
-    /*  public function login(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
-        }
-
-        $credentials = $request->only(['email', 'password']);
-
-        if (!Auth::attempt($credentials)) { //if Auth::attempt($credentials) returns false, the negation operator turns it into true, indicating that the user is not authorized to access the resource.
-            return response()->json([
-                'message' => 'Unauthorized'
-            ], 401);
-        }
-
-        $user = $request->user();
-
-        $tokenResult = $user->createToken('Personal Access Token');
-        $accessToken = $tokenResult->accessToken;
-
-        $accessToken->save();
-
-        return response()->json([
-            'access_token' => $accessToken,
-            'token_type' => 'Bearer',
-            'user' => $user
-        ], 200);
-    } */
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
