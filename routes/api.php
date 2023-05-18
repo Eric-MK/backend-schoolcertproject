@@ -19,13 +19,13 @@ use App\Http\Controllers\ProfileController;
 |
 */
 
-Route::post('/login', [AuthController::class, 'login']);
+Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/register', [AuthController::class, 'register']);
 
 Route::middleware(['auth:api'])->group(function () {
-    Route::get('user', function (Request $request) {
+    /* Route::get('user', function (Request $request) {
         return $request->user();
-    });
+    }); */
     Route::get('/user/show', [ProfileController::class, 'show']);
     Route::put('user/update', [ProfileController::class, 'update']);
     Route::delete('user/delete', [ProfileController::class, 'delete']);
