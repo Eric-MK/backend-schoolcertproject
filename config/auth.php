@@ -40,6 +40,11 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'api' => [ //The 'api' array is a configuration array used in Laravel authentication to specify the driver, provider, and hash settings for token-based authentication.
+            'driver' => 'token',
+            'provider' => 'users',//In this case, the provider is set to 'users', which means that the 'users' table in the database will be used to authenticate users.
+            'hash' => false,
+        ],
     ],
 
     /*

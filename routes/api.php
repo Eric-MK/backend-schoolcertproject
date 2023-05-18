@@ -5,6 +5,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MatchesController;
+use App\Http\Controllers\ProfileController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +26,9 @@ Route::middleware(['auth:api'])->group(function () {
     Route::get('user', function (Request $request) {
         return $request->user();
     });
+    Route::get('/user/show', [ProfileController::class, 'show']);
+    Route::put('user/update', [ProfileController::class, 'update']);
+    Route::delete('user/delete', [ProfileController::class, 'delete']);
 //Route::get('/matches', [MatchesController::class, 'index']);
 
 Route::post('logout', 'AuthController@logout');
