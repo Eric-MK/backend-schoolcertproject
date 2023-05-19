@@ -62,12 +62,13 @@ class AuthController extends Controller
 
         $user = $request->user();
         $tokenResult = $user->createToken('Personal Access Token');
-        $accessToken = $tokenResult->accessToken;
+        $accessToken = $tokenResult->plainTextToken;
 
         return response()->json([
             'access_token' => $accessToken,
             'token_type' => 'Bearer'
         ], 200);
+
     }
 
     public function logout(Request $request)

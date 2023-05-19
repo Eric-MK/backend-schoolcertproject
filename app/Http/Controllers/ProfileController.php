@@ -12,6 +12,7 @@ class ProfileController extends Controller
     public function show(Request $request)
     {
         $user = $request->user();
+        dd($user); // Add this line for debugging
         return response()->json([
             'user' => $user
         ], 200);
