@@ -25,12 +25,12 @@ Route::post('/register', [AuthController::class, 'register']);
 
 // Add the 'auth:api' middleware to individual routes that require authentication
 Route::middleware(['auth:api'])->group(function () {
-    Route::get('/user/show', [ProfileController::class, 'show']);
-    Route::put('user/update', [ProfileController::class, 'update']);
-    Route::delete('user/delete', [ProfileController::class, 'delete']);
+
     // Add other authenticated routes here
 });
-
+Route::get('/user/show', [ProfileController::class, 'show']);
+Route::put('user/update', [ProfileController::class, 'update']);
+Route::delete('user/delete', [ProfileController::class, 'delete']);
 // Add a catch-all route for other API routes
 Route::fallback(function () {
     return response()->json(['message' => 'Not Found'], 404);
