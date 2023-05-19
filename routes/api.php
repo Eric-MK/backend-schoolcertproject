@@ -18,20 +18,12 @@ use App\Http\Controllers\ProfileController;
 |
 */
 
-Route::match(['GET', 'POST'], '/login', [AuthController::class, 'login'])->name('login');
+Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/register', [AuthController::class, 'register']);
 
-// Remove the 'auth:api' middleware group from here
+Route::get('/user/{id}/show', [ProfileController::class, 'show']);
+Route::put('/user/{id}/update', [ProfileController::class, 'update']);
+Route::delete('/user/{id}/delete', [ProfileController::class, 'delete']);
 
-// Add the 'auth:api' middleware to individual routes that require authentication
-Route::middleware(['auth:api'])->group(function () {
 
-    // Add other authenticated routes here
-});
-Route::get('/user/show', [ProfileController::class, 'show']);
-Route::put('user/update', [ProfileController::class, 'update']);
-Route::delete('user/delete', [ProfileController::class, 'delete']);
-// Add a catch-all route for other API routes
-Route::fallback(function () {
-    return response()->json(['message' => 'Not Found'], 404);
-});
+
