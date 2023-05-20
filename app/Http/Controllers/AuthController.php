@@ -60,13 +60,11 @@ class AuthController extends Controller
             ], 401);
         }
 
-        $user = $request->user();
-        $tokenResult = $user->createToken('Personal Access Token');
-        $accessToken = $tokenResult->plainTextToken;
+        $user = Auth::user(); // Get the authenticated user
 
         return response()->json([
-            'access_token' => $accessToken,
-            'token_type' => 'Bearer'
+            'user_id' => $user->id, // Return the user ID
+            'message' => 'Successfully logged in'
         ], 200);
 
     }

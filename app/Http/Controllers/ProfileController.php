@@ -11,11 +11,11 @@ class ProfileController extends Controller
     public function show(Request $request)
     {
         // Get the user using the provided user ID
-        $user = User::find($request->id);
-
+        $user = $request->user();
+/*
         if (!$user) {
             return response()->json(['message' => 'User not found'], 404);
-        }
+        } */
 
         return response()->json([
             'user' => $user
@@ -36,7 +36,7 @@ class ProfileController extends Controller
         }
 
         // Get the user using the provided user ID
-        $user = User::find($request->id);
+        $user = $request->user();
 
         if (!$user) {
             return response()->json(['message' => 'User not found'], 404);
@@ -67,7 +67,7 @@ class ProfileController extends Controller
     public function delete(Request $request)
     {
         // Get the user using the provided user ID
-        $user = User::find($request->id);
+        $user = $request->user();
 
         if (!$user) {
             return response()->json(['message' => 'User not found'], 404);
