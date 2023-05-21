@@ -21,11 +21,8 @@ use App\Http\Controllers\ProfileController;
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/register', [AuthController::class, 'register']);
 
-Route::middleware('auth:api')->group(function () {
-    });
-
-    Route::get('/user/{id}/show', [ProfileController::class, 'show']);
-    Route::put('/user/{id}update', [ProfileController::class, 'update']);
-    Route::delete('/user{id}/delete', [ProfileController::class, 'delete']);
+Route::get('/user/{id}/show', [ProfileController::class, 'show']);
+Route::put('/user/{id}/update', [ProfileController::class, 'update']);
+Route::delete('/user/{id}/delete', [ProfileController::class, 'delete']);
 
 

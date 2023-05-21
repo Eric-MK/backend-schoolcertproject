@@ -2,41 +2,40 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class ProfileController extends Controller
 {
-    public function show(Request $request)
+    public function show($id)
     {
-        // Get the user using the provided user ID
-        $user = $request->user();
-/*
+        $user = User::find($id);
+
         if (!$user) {
             return response()->json(['message' => 'User not found'], 404);
-        } */
+        }
 
         return response()->json([
             'user' => $user
         ], 200);
     }
 
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,' . $request->id,
+            'email' => 'required|string|email|max:255|unique:users,email,' . $id,
             'password' => 'nullable|string|min:6|confirmed',
-            'profile_image' => 'nullable|image|max:2048'
+            //'profile_image' => 'nullable|image|max:2048'
         ]);
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
 
-        // Get the user using the provided user ID
-        $user = $request->user();
+        $user = User::find($id);
 
         if (!$user) {
             return response()->json(['message' => 'User not found'], 404);
@@ -64,19 +63,20 @@ class ProfileController extends Controller
         ]);
     }
 
-    public function delete(Request $request)
-    {
-        // Get the user using the provided user ID
-        $user = $request->user();
 
-        if (!$user) {
-            return response()->json(['message' => 'User not found'], 404);
-        }
+    public function delete($id)
+{
+    $user = User::find($id);
 
-        $user->delete();
-
-        return response()->json([
-            'message' => 'Profile deleted successfully'
-        ]);
+    if (!$user) {
+        return response()->json(['message' => 'User not found'], 404);
     }
+
+    $user->delete();
+
+    return response()->json([
+        'message' => 'Profile deleted successfully'
+    ]);
+}
+
 }
