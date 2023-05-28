@@ -25,4 +25,7 @@ Route::get('/user/{id}/show', [ProfileController::class, 'show']);
 Route::put('/user/{id}/update', [ProfileController::class, 'update']);
 Route::delete('/user/{id}/delete', [ProfileController::class, 'delete']);
 
+Route::post('/tickets/purchase', [TicketController::class, 'purchase'])->middleware('auth');
+Route::get('/tickets/{id}/tickets', [TicketController::class, 'userTickets'])->middleware('auth');
+Route::delete('/tickets', [TicketController::class, 'delete'])->middleware('auth');
 
