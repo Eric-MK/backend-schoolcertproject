@@ -47,5 +47,43 @@ class TicketController extends Controller
         'ticket' => $ticket,
     ], 201);
 }
+public function userTickets($userId)
+{
+    $user = User::find($userId);
+
+    if (!$user) {
+        return response()->json(['message' => 'User not found'], 404);
+    }
+
+    $ticket = Ticket::where('user_id', $userId)->first();
+
+    if (!$ticket) {
+        return response()->json(['message' => 'No ticket purchased'], 404);
+    }
+
+    return response()->json([
+        'ticket' => $ticket,
+    ], 200);
+}
+
+public function delete($userId)
+{
+    $user = User::find($userId);
+
+    if (!$user) {
+        return response()->json(['message' => 'User not found'], 404);
+    }
+
+    $ticket = Ticket::where('user_id', $userId)->first();
+
+    if (!$ticket) {
+        return response()->json(['message' => 'No ticket purchased'], 404);
+    }
+
+    $ticket->delete();
+
+    return response()->json(['message' => 'Ticket deleted successfully']);
+}
+
 
 }
