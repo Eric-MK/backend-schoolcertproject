@@ -4,6 +4,7 @@ use App\Models\Matches;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TicketController;
 use App\Http\Controllers\MatchesController;
 use App\Http\Controllers\ProfileController;
 
