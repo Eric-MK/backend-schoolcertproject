@@ -27,6 +27,6 @@ Route::put('/user/{id}/update', [ProfileController::class, 'update']);
 Route::delete('/user/{id}/delete', [ProfileController::class, 'delete']);
 
 Route::post('/tickets/purchase', [TicketController::class, 'purchase']);
-Route::get('/tickets/{id}/tickets', [TicketController::class, 'userTickets']);
-Route::delete('/tickets', [TicketController::class, 'delete']);
+Route::get('/tickets/{id}', [TicketController::class, 'userTickets']);
+Route::delete('/tickets/{id}/delete', [TicketController::class, 'delete']);
 
