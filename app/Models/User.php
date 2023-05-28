@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable 
+class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -47,4 +47,8 @@ class User extends Authenticatable
     return $this->profile_image ? asset('storage/' . $this->profile_image) : asset('images/default-avatar.png');
 }
 
+public function tickets()
+{
+    return $this->hasMany(Ticket::class);
+}
 }
